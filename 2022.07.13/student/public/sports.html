@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体育新闻</title>
+    <style>
+    
+    .sports-list li{
+        display: inline-block;
+        width: 300px;
+        height: 100px;
+        border-bottom: 1px solid rgb(124, 120, 120);
+    }
+    p,
+    span{
+        display: inline-block;
+    }
+        img{
+            border-radius: 20px;
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+    <script src="./javascripts/template-web.js"></script>
+</head>
+<body>
+    <header id="sports-header">腾讯新闻</header>
+    <main id="sports-main">
+        <div>
+            <ul class="sports-list">
+                <!-- <li>
+                    <div class="sports-list-text"><p>詹姆斯一刮风是的fog送哦给你的概念</p><span>50平</span></div>
+                    <div class="sports-list-img">
+                        <img src="./images/a.jpg" alt="">
+                    </div>
+                </li> -->
+            </ul>
+        </div>
+    </main>
+</body>
+<!-- 模板引擎快 -->
+<script id="tpl_sportsList" type="text/html">
+{{ each list }}
+    <li>
+        <div class="sports-list-text">
+            <p>{{ $value.title}}</p>
+            <span>{{ $value.comment }}评</span></div>
+        <div class="sports-list-img">
+            <img src="{{ $value.img}}" alt="">
+        </div>
+    </li>
+{{ /each }}
+</script>
+<script>
+    var sportsList =document.querySelector('.sports-list');
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        if(xhr.status == 200){
+            // console.log(xhr.responseText);
+            var data = JSON.parse(xhr.responseText);
+            if(data.errcode == 0){
+                sportsList.innerHTML = template('tpl_sportsList',data);
+            }
+        }
+    }
+    xhr.open('POST','/list3',true);
+    xhr.setRequestHeader('Content-Type','application/json');
+    xhr.send(JSON.stringify({"page":0,count:10}));
+</script>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./javascripts/template-web.js"></script>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>姓名</td>
+                <td>年龄</td>
+                <td>性别</td>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</body>
+<!-- 模板引擎：视图层 
+id名随意. type:固定的表示自定义模板“自定义元素代码块”
+-->
+<script id="tpl-tbody" type="text/html">
+    {{ each list }}
+    <tr>
+        <td>{{$value.username}}</td>
+        <td>{{$value.age}}</td>
+        <td>{{$value.gender}}</td>
+    </tr>
+    <!-- 注意 ： /代表结束，必须添加，否则会报错 -->
+    {{ /each }}
+</script>
+<script>
+    //方式一DOM
+    /*
+    var tbody = document.querySelector('tbody');
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        if(xhr.status == 200){
+            var data = JSON.parse(xhr.responseText);
+        for(var i = 0 ; i<data.list.length;i++){
+            var tr = document.createElement('tr');
+            for(var k in data.list[i]){
+                var td = document.createElement('td');
+                td.innerHTML = data.list[i][k];
+                tr.appendChild(td);
+            }
+            tbody.append(tr);
+        }
+        }
+    };
+    xhr.open('get','/list',true);
+    xhr.send();
+    */
+    //方式二 ： 模板拼接字符串
+   /*
+    var tbody = document.querySelector('tbody');
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            for (var i = 0; i < data['list'].length; i++) {
+                tbody.innerHTML += `
+        <tr>
+            <td>${data.list[i].username}</td>
+            <td>${data.list[i].age}</td>
+            <td>${data.list[i].gender}</td>
+        </tr>
+        `
+            }
+            
+        }
+    };
+    
+    xhr.open('GET', '/list', true);
+    xhr.send();
+    */
+   /*
+    var tbody = document.querySelector('tbody');
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            // template : 参数1； 模板引擎的id ， 参数2：数据。
+            tbody.innerHTML = template('tpl-tbody',data);
+        }
+    };
+    
+    xhr.open('GET', '/list', true);
+    xhr.send();
+*/
+
+    //发送JSON数据
+    var tbody = document.querySelector('tbody');
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+           
+        }
+    };
+    
+    xhr.open('POST', '/list', true);
+    xhr.setRequestHeader('COntent-type','application/json');
+    xhr.send(JSON.stringify({"username":'LISA',"age":18888,gender:"女"}));
+</script>
+
+</html>

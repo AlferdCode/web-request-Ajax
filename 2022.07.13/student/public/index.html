@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>XMLHttpRequest 发送请求成功</h2>
+</body>
+<script>
+    // GET请求
+    // 1.创建
+    // var xhr = new XMLHttpRequest();
+    // // 2.请求监听
+    // xhr.onload = function(){
+    //     console.log("发送请求成功");
+    // }
+    // // 3.连接
+    // xhr.open('GET','/list?name=zs&age=30',true);
+    // // 4.发送数据
+    // xhr.send();
+
+
+    // POST请求
+    // var xhr = new XMLHttpRequest();
+    // xhr.onload = function(){
+    //     console.log("发送请求成功");
+    // }
+    // xhr.open('POST','/list2',true);
+    // xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    // xhr.send("username=zs&password=123456");
+    
+    // Ajax响应操作
+    // var xhr = new XMLHttpRequest();
+    // xhr.onload = function(){
+    //     // status 是xhr对象的属性，表示响应的状态码
+    //     if(xhr.status == 200){
+    //         // responseText：是xhr的属性，表示响应字符串
+    //         console.log(xhr.responseText);
+    //     }
+    // }
+    // xhr.open('GET','/list',true);
+    // xhr.send();
+
+
+    // // JSON格式数据
+    // var json = {
+    //     "username":'LISA',
+    //     "foo":null
+    // }
+    // // 作为对象，很容易拿到数据，但是后端往浏览器去响应数的时候是字符串类型JSON“所以要解析JSON字符串”
+    // console.log(json.foo);
+    // // 拿到JSON字符串，没办法通过属性获取到值
+    // var json = '{"username":"LISA","foo":null }';
+    // // 需要转换为对象
+    // json = JSON.parse(json);
+
+    // var json1 = [
+    //     {"username":"zs","password":"123456"},
+    //     {"username":"Ls","password":"111111"},
+    //     {"username":"ww","password":"666666"}
+    // ]
+    // json1 = JSON.stringify(json1);
+    // console.log(json1);
+    // json1 = JSON.parse(json1);
+    // console.log(json1[2].username);
+
+
+/*
+    // JSON数据发送请求
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(){
+        if(xhr.status == 200){
+            // 1.输出查看
+            console.log(xhr.responseText);
+            // 2.获取数据
+            var data = JSON.parse(xhr.responseText);
+            console.log(data.list[0].username);
+            console.log(data.list[0].age);
+        }
+    }
+    xhr.open('GET','/list',true);
+    xhr.send();
+    */
+   
+   console.log(XMLHttpRequest);
+// var xhr = new XMLHttpRequest();
+// xhr.onload = function(){
+//     console.log(xhr.responseText);
+//     var arr = JSON.parse(xhr.responseText);
+//     var arr = Object.keys(arr.list[0]);
+//     console.log(arr);
+// }
+// xhr.open('GET','/list',true);
+// xhr.send();
+</script>
+</html>
